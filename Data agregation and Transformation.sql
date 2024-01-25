@@ -44,12 +44,25 @@ SELECT COUNT(DISTINCT rating) FROM sakila.film;
 #1.3 The number of films for each rating, sorting the results in descending order of the number of films. 
 -- This will help you to better understand the popularity of different film ratings and adjust purchasing 
 -- decisions accordingly.
-SELECT DISTINCT rental_rate
+SELECT length, rating   #
 FROM sakila.film
-ORDER BY rental_rate DESC;
+ORDER BY length ASC;
 
+# Using the film table, determine:
+-- 2.1 The mean film duration for each rating, and sort the results in descending order of the mean duration. 
+-- Round off the average lengths to two decimal places. This will help identify popular movie lengths for each category.
 
-SELECT description  FROM sakila.film;
+SELECT (AVG (film_duration) as average_duration), rating
+FROM sakila.film # I cannot find where is it film_duration
+ORDER BY film_duration DESC;
+
+-- 2.2 Identify which ratings have a mean duration of over two hours in order to help select films for customers who prefer longer movies
+
+SELECT (AVG (film_duration) as average_duration), rating
+FROM sakila.film # I cannot find where is it film_duration
+ORDER BY film_duration DESC
+HAVING average_duration < 120; 
+
 
 
 
